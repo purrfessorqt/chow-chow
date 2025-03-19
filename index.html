@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excited Chow Chow Alert</title>
+    <style>
+        body {
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+        }
+        .chow {
+            width: 150px;
+            height: 150px;
+            background: url('https://your-image-url.com/chow.png') no-repeat center/contain;
+            position: relative;
+            animation: idle 2s infinite alternate;
+        }
+        .hearts {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: pink;
+            opacity: 0;
+        }
+        @keyframes idle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes pop-hearts {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chow" id="chow"></div>
+        <div class="hearts" id="hearts">❤️❤️❤️</div>
+    </div>
+    <script>
+        function triggerAnimation() {
+            const chow = document.getElementById('chow');
+            const hearts = document.getElementById('hearts');
+            chow.style.animation = 'jump 0.6s ease-in-out';
+            hearts.style.animation = 'pop-hearts 1s ease-in-out';
+            setTimeout(() => {
+                chow.style.animation = 'idle 2s infinite alternate';
+                hearts.style.animation = '';
+            }, 600);
+        }
+        setInterval(triggerAnimation, 5000); // Simulate a follow alert every 5 seconds
+    </script>
+</body>
+</html>
